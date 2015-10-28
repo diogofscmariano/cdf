@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<testsuites>
+  <testsuite name="Chrome 46.0.2490 (Mac OS X 10.10.5)" package="unit" timestamp="2015-10-28T23:17:36" id="0" hostname="dmariano-Work.lan">
+    <properties>
+      <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36"/>
+    </properties>
+  </testsuite>
+  <testsuite name="Chrome 46.0.2490 (Mac OS X 10.10.5)" package="unit" timestamp="2015-10-28T23:17:36" id="0" hostname="dmariano-Work.lan" tests="4" errors="0" failures="0" time="0.113">
+    <properties>
+      <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36"/>
+    </properties>
+    <testcase name="Update Called" time="0.107" classname="unit Chrome 46.0.2490 (Mac OS X 10.10.5).The prpt Component #"/>
+    <testcase name="Verify returned value from getOptions" time="0.004" classname="unit Chrome 46.0.2490 (Mac OS X 10.10.5).The prpt Component #"/>
+    <testcase name="Verify returned value from getParams" time="0.001" classname="unit Chrome 46.0.2490 (Mac OS X 10.10.5).The prpt Component #"/>
+    <testcase name="Verify returned value from getReportOptions" time="0.001" classname="unit Chrome 46.0.2490 (Mac OS X 10.10.5).The prpt Component #"/>
+    <system-out><![CDATA[Chrome 46.0.2490 (Mac OS X 10.10.5) LOG: 'CDF: InitInstance 0'
+,Chrome 46.0.2490 (Mac OS X 10.10.5) LOG: '%cCDF:           [Lifecycle >Start] Init[0] (Running: 1)', 'color: #ddd'
+,Chrome 46.0.2490 (Mac OS X 10.10.5) LOG: '%cCDF:           [Lifecycle <End  ] Init[undefined] (Running: 0)', 'color: #ddd'
+,Chrome 46.0.2490 (Mac OS X 10.10.5) LOG: '%cCDF:           [Lifecycle >Start] prptComponent [prptComponent] (P: -1000 ): preExecution Timing: 0ms since start, 0ms since last event (Running: 1)', 'color: rgb(123,144,170)'
+,Chrome 46.0.2490 (Mac OS X 10.10.5) LOG: '%cCDF:           [Lifecycle <End  ] prptComponent [prptComponent] (P: -1000 ): postExecution Timing: 21ms since start, 21ms since last event (Running: 0)', 'color: rgb(123,144,170)'
+
+]]></system-out>
+    <system-err/>
+  </testsuite>
+</testsuites>
