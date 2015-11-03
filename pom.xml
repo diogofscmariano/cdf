@@ -18,6 +18,7 @@
     <module>core</module>
     <module>core-js-assembly</module>
     <module>pentaho</module>
+    <module>pentaho-js-assembly</module>
     <module>assemblies</module>
   </modules>
 
@@ -37,6 +38,9 @@
 
     <dependency.frontend-maven-plugin.revision>0.0.26</dependency.frontend-maven-plugin.revision>
     <js.project.list></js.project.list>
+    <requirejs.build.file></requirejs.build.file>
+    <global.require.file></global.require.file>
+    <requirejs.config.files.pattern></requirejs.config.files.pattern>
   </properties>
 
   <dependencyManagement>
@@ -159,9 +163,122 @@
       <id>javascript-build</id>
       <activation>
         <file>
-          <exists>${basedir}/src/main/javascript</exists>
+          <exists>${basedir}/src/main/javascript/config/${requirejs.build.file}</exists>
         </file>
       </activation>
+
+      <dependencies>
+        <dependency>
+          <groupId>pentaho</groupId>
+          <artifactId>pentaho-js-build</artifactId>
+          <version>0.2</version>
+          <type>zip</type>
+        </dependency>
+      </dependencies>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>unpack-js-dependencies</id>
+                <goals>
+                  <goal>unpack-dependencies</goal>
+                </goals>
+                <configuration>
+                  <includeArtifactIds>pentaho-js-build,${js.project.list}</includeArtifactIds>
+                  <includes>**/**</includes>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>Override profileBuilder</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${basedir}/target/dependency/pentaho-js-build</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${basedir}/src/main/javascript/config/</directory>
+                      <filtering>true</filtering>
+                      <includes>
+                        <include>profileBuilder.js</include>
+                      </includes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.8</version>
+            <executions>
+              <execution>
+                <id>Generate RequireCfg</id>
+                <phase>prepare-package</phase>
+                <configuration>
+                  <target>
+                    <concat destfile="${project.build.directory}/requireCfg.js" append="true" force="yes">
+                      <file file="${basedir}/src/main/javascript/config/context.js"/>
+                      <fileset dir="${basedir}/target/dependency/" casesensitive="yes">
+                        <include name="${requirejs.config.files.pattern}"/>
+                      </fileset>
+                    </concat>
+
+                    <path id="build.classpath">
+                      <fileset dir="${basedir}/target/dependency/pentaho-js-build/libs">
+                        <include name="*.jar"/>
+                      </fileset>
+                    </path>
+
+                    <java classname="org.mozilla.javascript.tools.shell.Main"
+                          fork="true"
+                          classpathref="build.classpath">
+                      <arg value="${basedir}/target/dependency/pentaho-js-build/profileBuilder.js"/>
+                    </java>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>com.github.bringking</groupId>
+            <artifactId>requirejs-maven-plugin</artifactId>
+            <version>2.0.4</version>
+            <executions>
+              <execution>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>optimize</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <configFile>
+                ${basedir}/src/main/javascript/config/${requirejs.build.file}
+              </configFile>
+              <filterConfig>true</filterConfig>
+              <skip>false</skip>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
 
     <profile>

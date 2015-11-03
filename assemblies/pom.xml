@@ -12,9 +12,27 @@
 
   <artifactId>cdf-plugin-assemblies</artifactId>
   <modules>
-    <module>cdf-samples</module>
     <module>cdf</module>
+    <module>cdf-js</module>
+    <module>cdf-samples</module>
   </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>pentaho</groupId>
+        <artifactId>cdf-core-js</artifactId>
+        <version>${project.version}</version>
+        <type>zip</type>
+      </dependency>
+      <dependency>
+        <groupId>pentaho</groupId>
+        <artifactId>cdf-pentaho-js</artifactId>
+        <version>${project.version}</version>
+        <type>zip</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
 
 </project>

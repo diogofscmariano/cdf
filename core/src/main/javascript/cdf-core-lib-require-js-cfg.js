@@ -54,7 +54,7 @@
 
     prefix = requirePaths['cdf/lib'] = FULL_QUALIFIED_URL + 'plugin/pentaho-cdf/api/resources/js' + (isDebug ? '/lib' : '/compressed/lib');
   } else { // build
-    prefix = requirePaths['cdf/lib'] = "cdf/js/lib";
+    prefix = requirePaths['cdf/lib'] = "cdf/lib";
   }
 
   //RequireJS text! loader plugin 2.0.14

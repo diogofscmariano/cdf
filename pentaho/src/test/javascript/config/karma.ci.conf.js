@@ -31,6 +31,8 @@ module.exports = function(config) {
       'src/test/javascript/config/context.js',
       {pattern: 'src/test/javascript/cdf/**/*.js', included: false},
       'target/test-javascript/cdf-core-require-js-cfg.js',
+      'target/test-javascript/cdf-core-lib-require-js-cfg.js',
+      'target/test-javascript/cdf-pentaho-require-js-cfg.js',
       'src/test/javascript/config/require-config.js',
       // fix 404 messages
       {pattern: 'target/test-javascript/cdf/**/*.png', watched: false, included: false, served: true},

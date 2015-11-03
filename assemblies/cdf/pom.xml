@@ -10,6 +10,54 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>pentaho-cdf</artifactId>
+  <packaging>pom</packaging>
 
+  <properties>
+    <js.project.list>cdf-core-js,cdf-pentaho-js,ccc,pentaho-js-build</js.project.list>
+    <requirejs.build.file>cdf.build.compile.js</requirejs.build.file>
+    <global.require.file>cdf-require-js-cfg.js</global.require.file>
+    <requirejs.config.files.pattern>**/*-require-js-cfg.js</requirejs.config.files.pattern>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>pentaho</groupId>
+      <artifactId>cdf-core-js</artifactId>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>pentaho</groupId>
+      <artifactId>cdf-pentaho-js</artifactId>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>pentaho</groupId>
+      <artifactId>ccc</artifactId>
+      <type>zip</type>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>src/assembly/descriptors/build.assembly.xml</descriptor>
+              </descriptors>
+              <finalName>src-javascript</finalName>
+              <appendAssemblyId>false</appendAssemblyId>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

@@ -9,10 +9,9 @@
   <includeBaseDirectory>false</includeBaseDirectory>
 
   <fileSets>
-    <!-- cdf legacy assembly -->
     <fileSet>
-      <directory>${basedir}/../core/src/main/javascript/</directory>
-      <outputDirectory>cdf/</outputDirectory>
+      <directory>${basedir}/../pentaho/src/main/javascript/</directory>
+      <outputDirectory>cdf</outputDirectory>
     </fileSet>
   </fileSets>
 

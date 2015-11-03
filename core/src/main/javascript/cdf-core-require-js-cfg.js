@@ -36,7 +36,7 @@
 
     prefix = requirePaths['cdf'] = FULL_QUALIFIED_URL + 'plugin/pentaho-cdf/api/resources/js' + (isDebug ? '' : '/compressed');
   } else { // build
-    prefix = requirePaths['cdf'] = "cdf/js";
+    prefix = requirePaths['cdf'] = "cdf";
   }
 
   /*
