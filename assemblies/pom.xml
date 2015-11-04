@@ -12,8 +12,8 @@
 
   <artifactId>cdf-plugin-assemblies</artifactId>
   <modules>
-    <module>cdf</module>
     <module>cdf-js</module>
+    <module>cdf</module>
     <module>cdf-samples</module>
   </modules>
 

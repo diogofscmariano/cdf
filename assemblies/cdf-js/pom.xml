@@ -10,6 +10,90 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>pentaho-cdf-js</artifactId>
+  <packaging>pom</packaging>
 
+  <properties>
+    <js.project.list>cdf-core-js,cdf-pentaho-js,ccc</js.project.list>
+    <requirejs.build.file>cdf.build.compile.js</requirejs.build.file>
+    <global.require.file>cdf-require-js-cfg.js</global.require.file>
+    <requirejs.config.files.pattern>**/*-require-js-cfg.js</requirejs.config.files.pattern>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>pentaho</groupId>
+      <artifactId>cdf-core-js</artifactId>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>pentaho</groupId>
+      <artifactId>cdf-pentaho-js</artifactId>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>pentaho</groupId>
+      <artifactId>ccc</artifactId>
+      <type>zip</type>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>Generate Cdf Global RequireCfg</id>
+            <phase>prepare-package</phase>
+            <configuration>
+              <target>
+                <concat destfile="${project.build.directory}/${global.require.file}" append="true" force="yes">
+                  <fileset dir="${basedir}/target/dependency/" casesensitive="yes">
+                    <include name="${requirejs.config.files.pattern}"/>
+                  </fileset>
+                </concat>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>Generate Build Directory</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>${basedir}/src/assembly/descriptors/build.assembly.xml</descriptor>
+              </descriptors>
+              <finalName>src-javascript</finalName>
+              <appendAssemblyId>false</appendAssemblyId>
+            </configuration>
+          </execution>
+          <execution>
+            <id>Build Package</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>${basedir}/src/assembly/descriptors/assembly.xml</descriptor>
+              </descriptors>
+              <appendAssemblyId>false</appendAssemblyId>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
