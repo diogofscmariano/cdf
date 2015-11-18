@@ -24,6 +24,7 @@ module.exports = function(config) {
     files: [
       {pattern: 'target/test-javascript/cdf/**/*.css', included: false},
       {pattern: 'target/test-javascript/cdf/**/*.js', included: false},
+      {pattern: 'target/test-javascript/cdf/**/*.html', included: false},
       {pattern: 'target/test-javascript/lib/**/*.css', included: false},
       {pattern: 'target/test-javascript/lib/**/*.js', included: false},
       {pattern: 'target/dependency/ccc/amd/**/*.js', included: false},

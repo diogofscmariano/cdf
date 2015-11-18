@@ -24,9 +24,11 @@ module.exports = function(config) {
     files: [
       {pattern: 'target/test-javascript/cdf/**/*.css', included: false},
       {pattern: 'target/test-javascript/cdf/**/*.js', included: false},
+      {pattern: 'target/test-javascript/cdf/**/*.html', included: false},
       {pattern: 'target/test-javascript/lib/**/*.css', included: false},
       {pattern: 'target/test-javascript/lib/**/*.js', included: false},
       {pattern: 'target/dependency/ccc/amd/**/*.js', included: false},
+      {pattern: 'target/dependency/ccc/amd/**/*.css', included: false},
       'src/test/javascript/config/context.js',
       {pattern: 'src/test/javascript/cdf/**/*-spec.js', included: false},
       'target/test-javascript/cdf-core-require-js-cfg.js',
@@ -96,7 +98,7 @@ module.exports = function(config) {
     captureTimeout: 600000,
 
     browserNoActivityTimeout: 600000,
-    
+
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
     singleRun: false,

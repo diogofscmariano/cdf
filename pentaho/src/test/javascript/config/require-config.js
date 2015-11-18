@@ -30,6 +30,11 @@
 
   require.config(requireCfg);
 
+  console.log = function() {};
+  console.info = function() {};
+  console.debug = function() {};
+  console.warn = function() {};
+
   // Ask Require.js to load all test files and start test run
   require(tests, karma.start);
 })();

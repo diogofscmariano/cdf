@@ -158,9 +158,9 @@
       "amd!cdf/lib/underscore" : "_"
     },
     prescript: "var root = {jQuery: jQuery, _: _};\n"
-      + "(function() {\n",
+    + "(function() {\n",
     postscript: "}.call(root));\n"
-      + "return root.Backbone;"
+    + "return root.Backbone;"
   };
 
   //mustache 0.8.1
@@ -174,9 +174,9 @@
       "cdf/lib/mustache": "Mustache"
     },
     prescript: "var root = {Mustache: Mustache};\n"
-      + "(function() {\n",
+    + "(function() {\n",
     postscript: "}.call(root));\n"
-      + "return root.Mustache;"
+    + "return root.Mustache;"
   };
 
   //Base 1.1a
@@ -379,9 +379,9 @@
       "amd!cdf/lib/backbone" : "Backbone"
     },
     prescript: "var root = { Backbone: Backbone, _: _ };\n"
-      + "(function() {\n",
+    + "(function() {\n",
     postscript: "}.call(root));\n"
-      + "return root.Backbone;"
+    + "return root.Backbone;"
   };
 
   // mCustomScrollbar: jquery mousewheel plugin v3.1.12, MIT License

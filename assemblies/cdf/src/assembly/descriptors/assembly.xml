@@ -9,7 +9,7 @@
 
   <fileSets>
     <fileSet>
-      <directory>${basedir}/target/dependency/cdf</directory>
+      <directory>${basedir}/target/${project.artifactId}-${project.version}-js/cdf</directory>
       <outputDirectory>/pentaho-cdf</outputDirectory>
       <excludes>
         <exclude>cdf-require-js-cfg.js</exclude>
@@ -24,7 +24,7 @@
 
   <files>
     <file>
-      <source>${basedir}/target/dependency/cdf/cdf-require-js-cfg.js</source>
+      <source>${basedir}/target/cdf-require-js-cfg.js</source>
       <destName>/pentaho-cdf/js/cdf-require-js-cfg.js</destName>
     </file>
   </files>
@@ -35,7 +35,8 @@
       <scope>runtime</scope>
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <excludes>
-        <exclude>pentaho:pentaho-cdf-js</exclude>
+        <exclude>*:zip</exclude>
+        <exclude>*:*:js</exclude>
       </excludes>
     </dependencySet>
   </dependencySets>

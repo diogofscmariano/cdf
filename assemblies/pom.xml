@@ -12,7 +12,6 @@
 
   <artifactId>cdf-plugin-assemblies</artifactId>
   <modules>
-    <module>cdf-js</module>
     <module>cdf</module>
     <module>cdf-samples</module>
   </modules>
@@ -21,14 +20,16 @@
     <dependencies>
       <dependency>
         <groupId>pentaho</groupId>
-        <artifactId>cdf-core-js</artifactId>
+        <artifactId>cdf-core</artifactId>
         <version>${project.version}</version>
+        <classifier>js</classifier>
         <type>zip</type>
       </dependency>
       <dependency>
         <groupId>pentaho</groupId>
-        <artifactId>cdf-pentaho-js</artifactId>
+        <artifactId>cdf-pentaho</artifactId>
         <version>${project.version}</version>
+        <classifier>js</classifier>
         <type>zip</type>
       </dependency>
     </dependencies>

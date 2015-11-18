@@ -68,7 +68,7 @@ public class CdfHeadersProviderForTests extends CdfHeadersProvider {
   }
 
   protected void appendDependencies( StringBuilder deps, DependenciesPackage pkg, boolean minify,
-                                     String absRoot, final ArrayList<String> files ) {
+      String absRoot, final ArrayList<String> files ) {
     deps.append( pkg.getName() );
   }
 

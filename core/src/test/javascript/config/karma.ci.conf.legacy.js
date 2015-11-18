@@ -83,7 +83,7 @@ module.exports = function(config) {
 
     //hostname
     hostname: ['localhost'],
-    
+
     // web server port
     port: 9876,
 

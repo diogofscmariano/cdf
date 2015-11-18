@@ -1,6 +1,19 @@
-core/target
-core/node_modules
-core/node
-pentaho/target
-pentaho/node_modules
-pentaho/node
+# OS-generated files
+.DS_Store*
+
+#Eclipse project files
+.classpath
+.project
+.settings
+.metadata
+
+#IntelliJ files
+.idea/
+*.iml
+
+#Output dir
+**/target
+
+#Node dirs
+**/node
+**/node_modules

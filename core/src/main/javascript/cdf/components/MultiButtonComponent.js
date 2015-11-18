@@ -72,17 +72,17 @@ define([
 
       for(var i = 0, len = myArray.length; i < len; i++) {
         var value = myArray[i][valIdx],
-          label = myArray[i][lblIdx],
-          classes = cssWrapperClass + getExtraCss(i, len, myself.verticalOrientation),
-          selector;
+            label = myArray[i][lblIdx],
+            classes = cssWrapperClass + getExtraCss(i, len, myself.verticalOrientation),
+            selector;
 
         value = (value == null ? null : value.replace('"', '&quot;'));
         label = (label == null ? null : label.replace('"', '&quot;'));
 
         if(i == 0) { firstVal = value; }
 
-        selectHTML = "<div class='" + classes +"'><button type='button' name='" + myself.name + "'>" 
-          + label + "</button  >" + "</div>";
+        selectHTML = "<div class='" + classes +"'><button type='button' name='" + myself.name + "'>"
+            + label + "</button  >" + "</div>";
         selector = $(selectHTML);
 
         // We wrap the click handler in a self-executing function so that we can capture 'i'.
@@ -95,7 +95,7 @@ define([
 
         var separator = myself.separator;
         if(!(separator == undefined || separator == null || separator == "null")
-          && i != myArray.length - 1) {
+            && i != myArray.length - 1) {
 
           ph.append(separator);
         }
@@ -129,15 +129,15 @@ define([
 
 
         if(($.isArray(currentVal) && isSelected || isSelected)
-          || (myArray[i][valIdx] == currentVal || myArray[i][lblIdx] == currentVal)) {
+            || (myArray[i][valIdx] == currentVal || myArray[i][lblIdx] == currentVal)) {
 
           myself.clickButton(
-            myself.htmlObject, 
-            myself.name, 
-            i, 
-            myself.isMultiple, 
-            myself.verticalOrientation, 
-            true
+              myself.htmlObject,
+              myself.name,
+              i,
+              myself.isMultiple,
+              myself.verticalOrientation,
+              true
           );
 
           foundDefault = true;
@@ -145,21 +145,21 @@ define([
         }
       }
       if(((!foundDefault && !myself.isMultiple) || (!foundDefault && myself.isMultiple && myself.defaultIfEmpty))
-        && myArray.length > 0) {
+          && myArray.length > 0) {
 
         //select first value
-        if((currentVal == null || currentVal == "" || (typeof(currentVal) == "object" && currentVal.length == 0)) 
-          && myself.parameter) {
+        if((currentVal == null || currentVal == "" || (typeof(currentVal) == "object" && currentVal.length == 0))
+            && myself.parameter) {
 
           myself.dashboard.fireChange(myself.parameter, (myself.isMultiple) ? [firstVal] : firstVal);
         }
 
         myself.clickButton(
-          myself.htmlObject, 
-          myself.name, 0, 
-          myself.isMultiple, 
-          myself.verticalOrientation, 
-          true
+            myself.htmlObject,
+            myself.name, 0,
+            myself.isMultiple,
+            myself.verticalOrientation,
+            true
         );
       }
 

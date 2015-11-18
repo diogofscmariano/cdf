@@ -13,9 +13,6 @@
 
 package org.pentaho.cdf.context;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static org.mockito.Mockito.*;
-
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
@@ -28,6 +25,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
+
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static org.mockito.Mockito.*;
 
 public class ContextApiTest {
   private static final String PATH = "fakePath";

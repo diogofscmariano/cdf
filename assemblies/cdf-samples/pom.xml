@@ -19,7 +19,7 @@
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
           <execution>
-            <id>Build Package</id>
+            <id>package-samples</id>
             <phase>package</phase>
             <goals>
               <goal>single</goal>

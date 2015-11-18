@@ -65,24 +65,24 @@ module.exports = function(config) {
     //reporter: coverage
     coverageReporter: {
       type: 'cobertura',
-      dir: 'bin/test-reports-legacy/coverage/reports/'
+      dir: 'target/coverage-reports/cdf-legacy-javascript'
     },
 
     //reporter: junit
     junitReporter: {
-      outputFile: 'bin/test-reports-legacy/test-results.xml',
+      outputFile: 'target/js-reports/cdf-legacy-results.xml',
       suite: 'unit'
     },
 
     // the default configuration
     htmlReporter: {
-      outputDir:    'bin/test-reports-legacy/karma_html',
+      outputDir: 'target/coverage-reports/cdf-legacy-javascript',
       templatePath: 'node_modules/karma-html-reporter/jasmine_template.html'
     },
 
     //hostname
     hostname: ['localhost'],
-    
+
     // web server port
     port: 9876,
 

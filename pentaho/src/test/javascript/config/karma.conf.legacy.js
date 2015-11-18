@@ -57,25 +57,21 @@ module.exports = function(config) {
 
     preprocessors: {'src/main/javascript/cdf-legacy/**/*.js': 'coverage'},
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress', 'junit', 'html', 'coverage'],
-
     //reporter: coverage
     coverageReporter: {
       type: 'cobertura',
-      dir: 'bin/test-reports-legacy/coverage/reports/'
+      dir: 'target/coverage-reports/cdf-legacy-javascript'
     },
 
     //reporter: junit
     junitReporter: {
-      outputFile: 'bin/test-reports-legacy/test-results.xml',
+      outputFile: 'target/js-reports/cdf-legacy-results.xml',
       suite: 'unit'
     },
 
     // the default configuration
     htmlReporter: {
-      outputDir:    'bin/test-reports-legacy/cdf-pentaho5/karma_html',
+      outputDir: 'target/coverage-reports/cdf-legacy-javascript',
       templatePath: 'node_modules/karma-html-reporter/jasmine_template.html'
     },
 
