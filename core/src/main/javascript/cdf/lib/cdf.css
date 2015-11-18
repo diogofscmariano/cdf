@@ -77,7 +77,7 @@
 
 .dataTables_wrapper table.dataTable thead th, .dataTables_wrapper table.dataTable thead td {
   border-bottom: 0;
-} 
+}
 
 /* Two-Button Classic Pagination */
 .paginate_disabled_previous, .paginate_enabled_previous,
@@ -354,18 +354,4 @@ body.draggable-popup-fix {
   body.draggable-popup-fix {
     position: relative;
   }
-}
-/*******************/
-
-
-/*******
- * Button Component
- ********/
-
-.buttonComponent.enabled {
-  opacity: 1;
-}
-
-.buttonComponent.disabled {
-  opacity: 0.5;
 }
