@@ -1,5 +1,5 @@
 /*!
- * Copyright 2002 - 2017 Webdetails, a Hitachi Vantara company. All rights reserved.
+ * Copyright 2018 Webdetails, a Hitachi Vantara company. All rights reserved.
  *
  * This software was developed by Webdetails and is provided under the terms
  * of the Mozilla Public License, Version 2.0, or any later version. You may not use
@@ -35,13 +35,14 @@ public class EmbeddedHeadersGenerator {
   static final String INITIAL_COMMENT = "/** This file is generated in cdf to allow using cdf embedded.\n"
       + "It will append to the head tag the dependencies needed, like the FULLY_QUALIFIED_URL**/\n\n";
   static final String REQUIRE_JS_CFG_START = "var requireCfg = {waitSeconds: 30, "
-      + "paths: {}, shim: {}, map: {\"*\": {}}, bundles: {}, config: {service: {}}, packages: []};\n\n";
+      + "paths: {}, shim: {}, map: {\"*\": {}}, bundles: {}, config: {\"pentaho/modules\": {}}, packages: []};\n\n";
 
   static final String REQUIRE_DASHBOARD_CONTEXT_CONFIGURATION =
       "requireCfg.config[''cdf/dashboard/Dashboard''] = {0};\n";
 
   static final String REQUIRE_PATH = "content/common-ui/resources/web/require.js";
   static final String REQUIRE_START_PATH = "content/common-ui/resources/web/require-cfg.js";
+  static final String REQUIRE_INIT_PATH = "osgi/requirejs-manager/js/require-init.js?requirejs=false&useFullyQualifiedUrl=true";
 
   private static final String CONTEXT_PATH_BUILDER = "\nvar CONTEXT_PATH = ''{0}'';\n";
   private static final String FULL_QUALIFIED_URL_BUILDER = "\nvar FULL_QUALIFIED_URL = ''{0}'';\n";
@@ -86,7 +87,8 @@ public class EmbeddedHeadersGenerator {
       .append( printHomeFolder() )
       .append( printReservedChars() )
       .append( printReservedCharsDisplay() )
-      .append( printReservedRegexPattern() );
+      .append( printReservedRegexPattern() )
+      .append( printRequireJsInit() );
 
     return sb.toString();
   }
@@ -121,7 +123,7 @@ public class EmbeddedHeadersGenerator {
     return sb.toString();
   }
 
-  private String printEnvironmentConfig() {
+  protected String printEnvironmentConfig() {
     String userID = getSessionName();
     String userHomeFolder = getUserHomeFolderPath();
 
@@ -145,7 +147,7 @@ public class EmbeddedHeadersGenerator {
         "\n};\n";
   }
 
-  private String printUrlContext() {
+  protected String printUrlContext() {
     String contextPath = DEPRECATED_COMMENT + MessageFormat.format( CONTEXT_PATH_BUILDER, this.fullQualifiedURL );
     String fullQualifiedUrl = DEPRECATED_COMMENT +
         MessageFormat.format( FULL_QUALIFIED_URL_BUILDER, this.fullQualifiedURL );
@@ -154,19 +156,19 @@ public class EmbeddedHeadersGenerator {
     return contextPath + fullQualifiedUrl + serverProtocol;
   }
 
-  private String printSessionName() throws IOException {
+  protected String printSessionName() throws IOException {
     return DEPRECATED_COMMENT + MessageFormat.format( SESSION_NAME_BUILDER, getSessionName() );
   }
 
-  private String printLocale() throws IOException {
+  protected String printLocale() throws IOException {
     return DEPRECATED_COMMENT + MessageFormat.format( LOCALE_BUILDER, locale.toString() );
   }
 
-  private String printHomeFolder() throws IOException {
+  protected String printHomeFolder() throws IOException {
     return DEPRECATED_COMMENT + MessageFormat.format( HOME_FOLDER_BUILDER, getUserHomeFolderPath() );
   }
 
-  private String printReservedChars() throws IOException {
+  protected String printReservedChars() throws IOException {
     StringBuilder sb = new StringBuilder();
     for ( char c : getReservedChars() ) {
       sb.append( c );
@@ -176,7 +178,7 @@ public class EmbeddedHeadersGenerator {
     return DEPRECATED_COMMENT + MessageFormat.format( RESERVED_CHARS_BUILDER, reservedChars );
   }
 
-  private String printReservedCharsDisplay() throws IOException {
+  protected String printReservedCharsDisplay() throws IOException {
     List<Character> reservedCharacters = getReservedChars();
     StringBuffer sb = new StringBuffer();
     for ( int i = 0; i < reservedCharacters.size(); i++ ) {
@@ -194,8 +196,12 @@ public class EmbeddedHeadersGenerator {
     return DEPRECATED_COMMENT + MessageFormat.format( RESERVED_CHARS_DISPLAY_BUILDER, reservedCharsDisplay );
   }
 
-  private String printReservedRegexPattern() throws IOException {
+  protected String printReservedRegexPattern() throws IOException {
     return DEPRECATED_COMMENT + MessageFormat.format( RESERVED_CHARS_REGEX_PATTERN_BUILDER, makeReservedCharPattern() );
+  }
+
+  private String printRequireJsInit() {
+    return MessageFormat.format( DOCUMENT_SCRIPT, fullQualifiedURL + REQUIRE_INIT_PATH ) );
   }
   // endregion
 
